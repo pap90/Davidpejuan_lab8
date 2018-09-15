@@ -35,6 +35,13 @@ public class main extends javax.swing.JFrame {
 
         jd_agact = new javax.swing.JDialog();
         cb_actividades = new javax.swing.JComboBox<>();
+        tf_nombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        sp_duracion = new javax.swing.JSpinner();
+        sp_posibilidades = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         cb_proyectos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -44,21 +51,62 @@ public class main extends javax.swing.JFrame {
 
         cb_actividades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none" }));
 
+        jLabel2.setText("nombre");
+
+        jLabel3.setText("duracion");
+
+        jLabel4.setText("posibilidades de retrazo");
+
+        jButton3.setText("guardar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_agactLayout = new javax.swing.GroupLayout(jd_agact.getContentPane());
         jd_agact.getContentPane().setLayout(jd_agactLayout);
         jd_agactLayout.setHorizontalGroup(
             jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_agactLayout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(cb_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_agactLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(48, 48, 48)
+                        .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tf_nombre)
+                            .addComponent(cb_actividades, 0, 131, Short.MAX_VALUE)
+                            .addComponent(sp_duracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sp_posibilidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jd_agactLayout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton3)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jd_agactLayout.setVerticalGroup(
             jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_agactLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(cb_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(sp_duracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(sp_posibilidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(31, 31, 31))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,14 +187,14 @@ public class main extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         try {
-            DefaultComboBoxModel modelo=(DefaultComboBoxModel) cb_proyectos.getModel();
-            if (((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().isEmpty()) {
-                
-            }else{
-                DefaultComboBoxModel m=(DefaultComboBoxModel) cb_actividades.getModel();
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_proyectos.getModel();
+            if (((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().isEmpty()) {
+
+            } else {
+                DefaultComboBoxModel m = (DefaultComboBoxModel) cb_actividades.getModel();
                 m.removeAllElements();
-                for (int i = 0; i < ((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size(); i++) {
-                    m.addElement((actividades)((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(i));
+                for (int i = 0; i < ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size(); i++) {
+                    m.addElement((actividades) ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(i));
                 }
                 m.addElement("none");
                 cb_actividades.setModel(m);
@@ -159,6 +207,33 @@ public class main extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        try {
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_proyectos.getModel();
+            if (cb_actividades.getSelectedItem().toString().equals("ninguna")) {
+                ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().add(new actividades(tf_nombre.getText(), (Integer) sp_duracion.getValue(), (Integer) sp_posibilidades.getValue()));
+                ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size() - 1).setIniciotemp(1);
+                cb_proyectos.setModel(modelo);
+                JOptionPane.showMessageDialog(jd_agact, "actividad creada");
+                jd_agact.setVisible(false);
+                actualizar();
+            } else {
+                DefaultComboBoxModel m = (DefaultComboBoxModel) cb_actividades.getModel();
+                ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().add(new actividades(tf_nombre.getText(), (Integer) sp_duracion.getValue(), (Integer) sp_posibilidades.getValue()));
+                ((actividades) m.getElementAt(cb_actividades.getSelectedIndex())).getPredecesoras().add((actividades) ((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(((proyectos) modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size() - 1));
+                ((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size()-1).getSucesoras().add((actividades)m.getElementAt(cb_actividades.getSelectedIndex()));
+                cb_proyectos.setModel(modelo);
+                cb_actividades.setModel(m);
+                JOptionPane.showMessageDialog(jd_agact, "actividad creada");
+                jd_agact.setVisible(false);
+                actualizar();
+            }
+            tf_nombre.setText("");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,37 +275,44 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_proyectos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jd_agact;
     private javax.swing.JTree jt_proyecto;
+    private javax.swing.JSpinner sp_duracion;
+    private javax.swing.JSpinner sp_posibilidades;
+    private javax.swing.JTextField tf_nombre;
     // End of variables declaration//GEN-END:variables
-    
-    public void actualizar(){
+
+    public void actualizar() {
         try {
-            proyectos p=(proyectos) cb_proyectos.getSelectedItem();
-            DefaultTreeModel m=(DefaultTreeModel) jt_proyecto.getModel();
-            DefaultMutableTreeNode r=new DefaultMutableTreeNode(p);
+            proyectos p = (proyectos) cb_proyectos.getSelectedItem();
+            DefaultTreeModel m = (DefaultTreeModel) jt_proyecto.getModel();
+            DefaultMutableTreeNode r = new DefaultMutableTreeNode(p);
             m.setRoot(r);
-            DefaultMutableTreeNode raiz=(DefaultMutableTreeNode) m.getRoot();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
             raiz.removeAllChildren();
-            DefaultMutableTreeNode n1= null;
-            DefaultMutableTreeNode n2=null;
-            DefaultMutableTreeNode n3=null;
-            for (actividades t :p.getActi() ) {
-                if (t.getPredecesoras().isEmpty()&&t.getSucesoras().isEmpty()) {
-                    n1=new DefaultMutableTreeNode(t);
+            DefaultMutableTreeNode n1 = null;
+            DefaultMutableTreeNode n2 = null;
+            DefaultMutableTreeNode n3 = null;
+            for (actividades t : p.getActi()) {
+                if (t.getPredecesoras().isEmpty() && t.getSucesoras().isEmpty()) {
+                    n1 = new DefaultMutableTreeNode(t);
                     raiz.add(n1);
-                }else{
-                    for (actividades s: t.getPredecesoras()){
-                        n2=new DefaultMutableTreeNode(s);
+                } else {
+                    for (actividades s : t.getPredecesoras()) {
+                        n2 = new DefaultMutableTreeNode(s);
                         for (actividades c : s.getSucesoras()) {
-                            n3=new DefaultMutableTreeNode(c);
+                            n3 = new DefaultMutableTreeNode(c);
                             n3.add(n2);
                         }
                         raiz.add(n3);
                     }
-                    
+
                 }
             }
             m.reload();

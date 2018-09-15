@@ -23,7 +23,7 @@ public class actividades {
     public actividades() {
     }
 
-    public actividades(String nombre, int iniciotemp, int finaltemp, int duracion, int retraso) {
+    public actividades(String nombre, int duracion, int retraso) {
         this.nombre = nombre;
         this.duracion = duracion;
         this.retraso = retraso;
