@@ -1,12 +1,16 @@
 
 import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author david
@@ -29,20 +33,43 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_agact = new javax.swing.JDialog();
+        cb_actividades = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_proyectos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_proyecto = new javax.swing.JTree();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        cb_actividades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none" }));
+
+        javax.swing.GroupLayout jd_agactLayout = new javax.swing.GroupLayout(jd_agact.getContentPane());
+        jd_agact.getContentPane().setLayout(jd_agactLayout);
+        jd_agactLayout.setHorizontalGroup(
+            jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_agactLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(cb_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(199, Short.MAX_VALUE))
+        );
+        jd_agactLayout.setVerticalGroup(
+            jd_agactLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_agactLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(cb_actividades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(279, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Proyectos");
 
+        cb_proyectos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none" }));
+
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("proyectos");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(jTree1);
+        jt_proyecto.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jt_proyecto);
 
         jButton1.setText("agregar proyecto");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -52,6 +79,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jButton2.setText("agregar actividad");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +98,7 @@ public class main extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_proyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(249, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -80,7 +112,7 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_proyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -98,8 +130,35 @@ public class main extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+        String n = JOptionPane.showInputDialog("nombre del proyecto");
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_proyectos.getModel();
+        modelo.addElement(new proyectos(n));
+        cb_proyectos.setModel(modelo);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        try {
+            DefaultComboBoxModel modelo=(DefaultComboBoxModel) cb_proyectos.getModel();
+            if (((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().isEmpty()) {
+                
+            }else{
+                DefaultComboBoxModel m=(DefaultComboBoxModel) cb_actividades.getModel();
+                m.removeAllElements();
+                for (int i = 0; i < ((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().size(); i++) {
+                    m.addElement((actividades)((proyectos)modelo.getElementAt(cb_proyectos.getSelectedIndex())).getActi().get(i));
+                }
+                m.addElement("none");
+                cb_actividades.setModel(m);
+            }
+            jd_agact.setModal(true);
+            jd_agact.pack();
+            jd_agact.setLocationRelativeTo(this);
+            jd_agact.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -137,12 +196,46 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_actividades;
+    private javax.swing.JComboBox<String> cb_proyectos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JDialog jd_agact;
+    private javax.swing.JTree jt_proyecto;
     // End of variables declaration//GEN-END:variables
-    ArrayList <actividades> acti=new ArrayList();
+    
+    public void actualizar(){
+        try {
+            proyectos p=(proyectos) cb_proyectos.getSelectedItem();
+            DefaultTreeModel m=(DefaultTreeModel) jt_proyecto.getModel();
+            DefaultMutableTreeNode r=new DefaultMutableTreeNode(p);
+            m.setRoot(r);
+            DefaultMutableTreeNode raiz=(DefaultMutableTreeNode) m.getRoot();
+            raiz.removeAllChildren();
+            DefaultMutableTreeNode n1= null;
+            DefaultMutableTreeNode n2=null;
+            DefaultMutableTreeNode n3=null;
+            for (actividades t :p.getActi() ) {
+                if (t.getPredecesoras().isEmpty()&&t.getSucesoras().isEmpty()) {
+                    n1=new DefaultMutableTreeNode(t);
+                    raiz.add(n1);
+                }else{
+                    for (actividades s: t.getPredecesoras()){
+                        n2=new DefaultMutableTreeNode(s);
+                        for (actividades c : s.getSucesoras()) {
+                            n3=new DefaultMutableTreeNode(c);
+                            n3.add(n2);
+                        }
+                        raiz.add(n3);
+                    }
+                    
+                }
+            }
+            m.reload();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

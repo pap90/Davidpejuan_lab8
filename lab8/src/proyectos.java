@@ -47,6 +47,12 @@ public class proyectos {
     public void setActi(ArrayList<actividades> acti) {
         this.acti = acti;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     
     
 }

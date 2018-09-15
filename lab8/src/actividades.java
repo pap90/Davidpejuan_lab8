@@ -85,4 +85,11 @@ public class actividades {
         this.sucesoras = sucesoras;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
+
 }
